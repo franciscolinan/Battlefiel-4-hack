@@ -7,7 +7,7 @@
 #include <cstdint>
 #include "Offsets.h"
 
-bool WorldToScreen(HANDLE phandle, std::uint64_t renderer, D3DXVECTOR3& vLocVec4)
+auto WorldToScreen(HANDLE phandle, std::uint64_t renderer, D3DXVECTOR3& vLocVec4) -> bool
 {
 	D3DXMATRIXA16 ViewProj;
 	ReadProcessMemory(phandle, (void*)(renderer + VIEW_PROJECTION), &ViewProj, sizeof(ViewProj), 0);
@@ -47,7 +47,7 @@ bool WorldToScreen(HANDLE phandle, std::uint64_t renderer, D3DXVECTOR3& vLocVec4
 	return true;
 }
 
-float GetHealth(HANDLE phandle, std::uint64_t player)
+auto GetHealth(HANDLE phandle, std::uint64_t player) -> float
 {
 	std::uint64_t address = 0;
 	float health = 0;
@@ -57,14 +57,14 @@ float GetHealth(HANDLE phandle, std::uint64_t player)
 	return health;
 }
 
-std::uint32_t GetTeamId(HANDLE phandle, std::uint64_t player)
+auto GetTeamId(HANDLE phandle, std::uint64_t player) -> std::uint32_t
 {
 	int team = 0;
 	ReadProcessMemory(phandle, (void*)(player + TEAM_ID), &team, sizeof(team), 0);
 	return team;
 }
 
-D3DXVECTOR3 GetPosition(HANDLE phandle, std::uint64_t player)
+auto GetPosition(HANDLE phandle, std::uint64_t player) -> D3DXVECTOR3
 {
 	D3DXVECTOR3 position;
 	std::uint64_t address = 0;
