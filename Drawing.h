@@ -1,13 +1,13 @@
 #pragma once
 #include <Windows.h>
 
-void DrawFilledRect(HDC hdc, HBRUSH brush, int x, int y, int w, int h)
+auto DrawFilledRect(HDC hdc, HBRUSH brush, int x, int y, int w, int h) -> void
 {
 	RECT rect = { x, y, x + w, y + h };
 	FillRect(hdc, &rect, brush);
 }
 
-void DrawBorderBox(HDC hdc, HBRUSH brush, int x, int y, int w, int h, int thickness)
+auto DrawBorderBox(HDC hdc, HBRUSH brush, int x, int y, int w, int h, int thickness) -> void
 {
 	DrawFilledRect(hdc, brush, x, y, w, thickness);
 	DrawFilledRect(hdc, brush, x, y, thickness, h);
